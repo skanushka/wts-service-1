@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  wts-service-1:
+    container_name: wts-service-1
+    build:
+      dockerfile: Dockerfile
+      context: ./wts-service-1
+    ports:
+      - '8080:8080'
+    networks:
+      - wts-service
+  wts-service-2:
+    container_name: wts-service-2
+    build:
+      dockerfile: Dockerfile
+      context: ./wts-service-2
+    ports:
+      - '8081:8081'
+    networks:
+      - wts-service
+  wts-service-ui:
+    container_name: wts-ui
+    build:
+      dockerfile: Dockerfile
+      context: ./wts-ui
+    ports:
+      - '3000:3000'
+networks:
+  wts-service:
+    driver: bridge
